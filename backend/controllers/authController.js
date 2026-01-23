@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 
 const jwt = require("jsonwebtoken");
 
-
 exports.registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -36,7 +35,7 @@ exports.registerUser = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ message: "Server error",error });
+    res.status(500).json({ message: "Server error", error });
   }
 };
 

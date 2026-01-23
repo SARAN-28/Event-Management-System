@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import "../styles/dialog.css";
 
 const Login = ({ close, openRegister }) => {
@@ -6,23 +7,45 @@ const Login = ({ close, openRegister }) => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    toast.error("Please enter a valid email");
+    return;
+  }
+
+  if (!password) {
+    toast.error("Password is required");
+    return;
+  }
+
+  try {
     const res = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
 
     const data = await res.json();
 
+    if (!res.ok) {
+      toast.error(data.message || "Invalid credentials");
+      return;
+    }
+
+    toast.success("Login successful");
+
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
 
     close();
-  };
+  } catch (error) {
+    toast.error("Backend server is not running");
+  }
+};
+
 
   return (
     <dialog open>

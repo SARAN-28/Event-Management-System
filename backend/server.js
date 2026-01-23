@@ -1,6 +1,6 @@
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-
+const eventRoutes = require("./routes/eventRoutes");
 
 require("dotenv").config();
 
@@ -16,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/events", eventRoutes);
 
 mongoose
     .connect(process.env.MONGO_URI)

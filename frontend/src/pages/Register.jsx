@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import "../styles/dialog.css";
 
 const Register = ({ close, openLogin }) => {
@@ -15,27 +16,44 @@ const Register = ({ close, openLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const nameRegex = /^[A-Za-z ]{2,30}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*?#&]{8,}$/;
+
+    if (!nameRegex.test(formData.name)) {
+      toast.error("Invalid name format");
+    }
+
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Invalid email format");
+      return;
+    }
+
+    if (!passwordRegex.test(formData.password)) {
+      toast.error(
+        "Password must contain uppercase, lowercase, number & special character"
+      );
+      return;
+    }
+
     try {
       const res = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.message || "Registration failed");
+        toast.error(data.message || "Registration failed");
         return;
       }
 
-      alert("Success! Now please login.");
+      toast.success("Registration successful! Please login");
       openLogin();
     } catch (error) {
-      console.error("Error:", error);
-      alert("Backend server is not running")
+      toast.error("Backend server is not running");
     }
   };
 
