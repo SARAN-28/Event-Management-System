@@ -5,29 +5,24 @@ const eventSchema = new mongoose.Schema(
         title: {
             type: String,
             required: true,
-            trim: true,
+            trim: true
         },
-
         description: {
             type: String,
             required: true,
         },
-
         date: {
             type: Date,
-            required: true,
+            required: true
         },
-
         location: {
             type: String,
-            required: true,
-        },
-
+            required: true
+        }, 
         capacity: {
             type: Number,
-            required: true,
+            required: true
         },
-
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
@@ -38,5 +33,3 @@ const eventSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Event", eventSchema);
-
-
