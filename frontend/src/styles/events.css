@@ -1,0 +1,181 @@
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.view-registrations-btn {
+  padding: 8px 16px;
+  background-color: rgb(13, 110, 253);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.view-registrations-btn:hover {
+  background-color: rgb(8, 66, 152);
+}
+
+.events-container {
+  padding: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.events-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: rgb(44, 62, 80);
+}
+
+.event-card {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.event-card:hover {
+  transform: scale(1.01);
+}
+
+.event-card h3 {
+  color: rgb(79, 70, 229);
+  margin-bottom: 10px;
+}
+
+.event-card p {
+  margin-bottom: 6px;
+  color: rgb(85, 85, 85);
+}
+
+.event-card button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgb(99, 102, 241), rgb(79, 70, 229));
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.event-card button:hover {
+  opacity: 0.9;
+}
+
+.registered-btn {
+  background-color: rgb(156, 163, 175);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.view-btn {
+  margin-left: 10px;
+  background-color: rgb(34, 197, 94);
+}
+
+.admin-event-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-event-btn {
+  background: linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74));
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.edit-event-btn:hover {
+  opacity: 0.9;
+}
+
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.view-registrations-btn {
+  padding: 8px 16px;
+  background-color: rgb(13, 110, 253);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.view-registrations-btn:hover {
+  background-color: rgb(11, 94, 215);
+}
+
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirm-box {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 25px;
+}
+
+.yes-btn {
+  background: rgb(220, 38, 38);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.yes-btn:hover{
+  transform: scale(1.05);
+}
+
+.no-btn {
+  background: rgb(107, 114, 128);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.no-btn:hover{
+  transform: scale(1.05);
+}
+

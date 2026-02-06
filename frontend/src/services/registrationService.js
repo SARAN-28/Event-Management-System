@@ -23,4 +23,4 @@ export const getAllRegistrations = async () => {
     });
 
     return res.json();
-};
+};                    

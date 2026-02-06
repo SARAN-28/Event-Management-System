@@ -1,4 +1,5 @@
-const Event = require("../models/Event")
+const Event = require("../models/event")
+const Registration = require("../models/Registration");
 
 exports.createEvent = async (req, res) => {
     try {
@@ -29,18 +30,32 @@ exports.createEvent = async (req, res) => {
 
 exports.getAllEvents = async (req, res) => {
     try {
-        const events = await Event.find().populate(
-            "createdBy",
-            "name email role"
-        );
+        const events = await Event.find();
 
+        let registeredEventIds = [];
+
+        if (req.user) {
+            const registrations = await Registration.find({
+                user: req.user._id,
+            });
+
+            registeredEventIds = registrations.map(
+                (reg) => reg.event.toString()
+            );
+        }
+
+        const eventsWithStatus = events.map((event) => ({
+            ...event._doc,
+            isRegistered: registeredEventIds.includes(
+                event._id.toString()
+            ),
+        }));
         res.status(200).json({
             success: true,
-            count: events.length,
-            events,
+            events: eventsWithStatus,
         });
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -98,3 +113,32 @@ exports.deleteEvent = async (req, res) => {
     }
 };
 
+exports.getSingleEvent = async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      event,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getMyEvents = async (req, res) => {
+  try {
+    const events = await Event.find({ createdBy: req.user._id });
+
+    res.status(200).json({
+      success: true,
+      events,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

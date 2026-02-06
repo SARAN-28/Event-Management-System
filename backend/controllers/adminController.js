@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const UserSession =require("../models/userSession.js");
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -53,6 +54,18 @@ exports.deleteUser = async (req, res) => {
     await user.deleteOne();
 
     res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getAllSessions = async (req, res) => {
+  try {
+    const sessions = await UserSession.find()
+      .populate("user", "name email")
+      .sort({ loginTime: -1 });
+
+    res.status(200).json({ success: true, sessions });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

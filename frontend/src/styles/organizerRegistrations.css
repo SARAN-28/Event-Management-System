@@ -1,0 +1,52 @@
+.container {
+    padding: 40px;
+    background: rgb(244, 246, 251);
+    min-height: 100vh;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: rgb(31, 41, 55);
+}
+
+.table-card {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    max-width: 900px;
+}
+
+.registrations-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.registrations-table thead {
+    background: linear-gradient(90deg, rgb(79, 70, 229), rgb(99, 102, 241));
+}
+
+.registrations-table th {
+    color: rgb(255, 255, 255);
+    padding: 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.registrations-table td {
+    padding: 14px;
+    color: rgb(55, 65, 81);
+    border-bottom: 1px solid rgb(229, 231, 235);
+}
+
+.registrations-table tr:last-child td {
+    border-bottom: none;
+}
+
+.registrations-table tbody tr:hover {
+    background-color: rgb(249, 250, 251);
+    transition: background 0.2s ease;
+}

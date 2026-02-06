@@ -1,0 +1,73 @@
+.edit-event-container {
+  max-width: 500px;
+  margin: 40px auto;
+  background: rgb(255, 255, 255);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+}
+
+.edit-event-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: rgb(44, 62, 80);
+}
+
+.edit-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-event-form label {
+  font-weight: 600;
+  color: rgb(68, 68, 68);
+  margin-bottom: 5px;
+}
+
+.edit-event-form input,
+.edit-event-form textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-event-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.edit-event-form input:focus,
+.edit-event-form textarea:focus {
+  outline: none;
+  border-color: rgb(127, 0, 255);
+  box-shadow: 0 0 0 2px rgba(127, 0, 255, 0.15);
+}
+
+.edit-event-btn {
+  margin-top: 10px;
+  background: linear-gradient(135deg, rgb(127, 0, 255), rgb(225, 0, 255));
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 12px;
+  border-radius: 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-event-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .edit-event-container {
+    margin: 20px;
+    padding: 20px;
+  }
+}

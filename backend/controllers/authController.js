@@ -1,8 +1,7 @@
 const User = require("../models/user");
-
 const bcrypt = require("bcrypt");
-
 const jwt = require("jsonwebtoken");
+const UserSession = require("../models/userSession");
 
 exports.registerUser = async (req, res) => {
   try {
@@ -35,7 +34,7 @@ exports.registerUser = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ message: "Server error", error });
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -44,7 +43,9 @@ exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required" });
+      return res
+        .status(400)
+        .json({ message: "Email and password are required" });
     }
 
     const user = await User.findOne({ email });
@@ -63,6 +64,12 @@ exports.loginUser = async (req, res) => {
       { expiresIn: "1d" }
     );
 
+    const session = await UserSession.create({
+      user: user._id,
+      role: user.role,
+      loginTime: new Date(),
+    });
+
     res.status(200).json({
       message: "Login successful",
       token,
@@ -72,10 +79,60 @@ exports.loginUser = async (req, res) => {
         email: user.email,
         role: user.role,
       },
+      sessionId: session._id,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };
 
+exports.logoutUser = async (req, res) => {
+  try {
+    const { sessionId } = req.body;
 
+    if (!sessionId) {
+      return res.status(400).json({ message: "Session ID required" });
+    }
+
+    const session = await UserSession.findById(sessionId);
+
+    if (!session) {
+      return res.status(404).json({ message: "Session not found" });
+    }
+    
+    if (session.logoutTime) {
+      return res.status(200).json({ message: "Already logged out" });
+    }
+
+    session.logoutTime = new Date();
+    await session.save();
+
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+exports.toggleCheckInOut = async (req, res) => {
+  const { sessionId } = req.body;
+
+  const session = await UserSession.findById(sessionId);
+  if (!session) {
+    return res.status(404).json({ message: "Session not found" });
+  }
+
+  if (!session.checkInTime) {
+    session.checkInTime = new Date();
+    await session.save();
+    return res.json({ status: "checked-in", checkInTime: session.checkInTime });
+  }
+
+  if (!session.checkOutTime) {
+    session.checkOutTime = new Date();
+    session.logoutTime = session.checkOutTime;
+    await session.save();
+    return res.json({ status: "checked-out", checkOutTime: session.checkOutTime });
+  }
+
+  res.json({ message: "Already checked out" });
+};

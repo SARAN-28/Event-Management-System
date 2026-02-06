@@ -1,115 +1,104 @@
-dialog {
-  border: none;
-  border-radius: 14px;
-  padding: 0;
-  width: 360px;
-  max-width: 90%;
-  max-height: 85vh;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-  font-family: 'Times New Roman', Times, serif;
+.modal-overlay {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: scaleInCenter 0.3s ease;
-}
-
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.65);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(4px);
-}
-
-dialog form {
-  padding: 24px;
   display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-dialog h3 {
-  margin-bottom: 16px;
-  font-size: 22px;
-  text-align: center;
-  color: #222;
-}
-
-dialog input {
-  padding: 12px;
-  margin-bottom: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-dialog input:focus {
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
-  outline: none;
-}
-
-dialog form button {
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-dialog form button[type="submit"] {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  color: white;
-}
-
-dialog form button[type="button"] {
-  background: linear-gradient(135deg, #f16363, #e54646);
-  color: white;
-}
-
-@keyframes scaleInCenter {
-  from {
-    transform: translate(-50%, -50%) scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-}
-
-.login-register-text {
-  margin-top: 12px;
-  text-align: center;
-  font-size: 14px;
-  color: #444;
-}
-
-.login-register-link {
-  color: #4f46e5;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.login-register-link:hover {
-  text-decoration: underline;
-}
-
-.auth-dialog {
+.modal {
+  background: rgb(255, 255, 255);
+  width: 420px;
+  max-width: 90%;
+  border-radius: 14px;
+  padding: 24px;
   position: relative;
-  padding: 20px;
-  border-radius: 8px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  animation: scaleInCenter 0.3s ease;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .close-btn {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   font-size: 22px;
   cursor: pointer;
 }
 
 .close-btn:hover {
   transform: scale(1.1);
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal h3 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 22px;
+  color: rgb(34, 34, 34);
+}
+
+.modal input {
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  font-size: 14px;
+}
+
+.modal input:focus {
+  border-color: rgb(79, 70, 229);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  outline: none;
+}
+
+.modal button[type="submit"] {
+  padding: 11px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  background: linear-gradient(135deg, rgb(99, 102, 241), rgb(79, 70, 229));
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.modal button[type="submit"]:hover {
+  transform: translateY(-1px);
+}
+
+.login-register-text {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+  color: rgb(68, 68, 68);
+}
+
+.login-register-link {
+  color: rgb(79, 70, 229);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-register-link:hover {
+  text-decoration: underline;
+}
+
+@keyframes scaleInCenter {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

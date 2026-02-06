@@ -1,0 +1,47 @@
+.add-event-container {
+  max-width: 500px;
+  margin: 40px auto;
+  background: rgb(255, 255, 255);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.add-event-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgb(127, 0, 255);
+}
+
+.add-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-event-form input,
+.add-event-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgb(204, 204, 204);
+  font-size: 14px;
+}
+
+.add-event-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.add-event-form button {
+  background: linear-gradient(135deg, rgb(127, 0, 255), rgb(225, 0, 255));
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-event-form button:hover {
+  opacity: 0.9;
+}

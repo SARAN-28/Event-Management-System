@@ -1,51 +1,74 @@
 .admin-dashboard {
   padding: 30px;
   font-family: Arial, sans-serif;
-  background-color: #f5f7fa;
+  background-color: rgb(245, 247, 250);
   min-height: 100vh;
 }
 
 .admin-dashboard h2 {
   margin-bottom: 10px;
-  color: #2c3e50;
+  color: rgb(44, 62, 80);
 }
 
 .admin-dashboard p {
   margin-bottom: 20px;
-  color: #555;
+  color: rgb(85, 85, 85);
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-event-btn {
+  background: linear-gradient(135deg, rgb(127, 0, 255), rgb(225, 0, 255));
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-event-btn:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .admin-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff;
+  background-color: rgb(255, 255, 255);
 }
 
 .admin-table thead {
-  background-color: #2c3e50;
-  color: #ffffff;
+  background-color: rgb(44, 62, 80);
+  color: rgb(255, 255, 255);
 }
 
 .admin-table th,
 .admin-table td {
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(221, 221, 221);
   text-align: left;
 }
 
 .admin-table tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: rgb(241, 241, 241);
 }
 
 .role-select {
   padding: 6px 10px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(204, 204, 204);
   cursor: pointer;
 }
 
 .delete-btn {
-  background-color: #e74c3c;
+  background-color: rgb(237, 78, 61);
   color: white;
   border: none;
   padding: 6px 14px;
@@ -54,7 +77,7 @@
 }
 
 .delete-btn:hover {
-  background-color: #c0392b;
+  background-color: rgb(192, 57, 43);
 }
 
 .delete-dialog {
@@ -63,6 +86,10 @@
   padding: 20px;
   width: 320px;
   text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .delete-dialog::backdrop {
@@ -77,7 +104,7 @@
 }
 
 .confirm-btn {
-  background-color: #e74c3c;
+  background-color: rgb(231, 76, 60);
   color: white;
   border: none;
   padding: 6px 16px;
@@ -86,12 +113,12 @@
 }
 
 .confirm-btn:hover {
-  background-color: #c0392b;
+  background-color: rgb(192, 57, 43);
 }
 
 .cancel-btn {
-  background-color: #bdc3c7;
-  color: #333;
+  background-color: rgb(189, 195, 199);
+  color: rgb(51, 51, 51);
   border: none;
   padding: 6px 16px;
   border-radius: 4px;
@@ -99,7 +126,7 @@
 }
 
 .cancel-btn:hover {
-  background-color: #95a5a6;
+  background-color: rgb(149, 165, 166);
 }
 
 @media (max-width: 768px) {

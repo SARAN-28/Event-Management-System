@@ -1,0 +1,33 @@
+.admin-registrations {
+  padding: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.admin-registrations h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: rgb(44, 62, 80);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.admin-table thead {
+  background: rgb(79, 70, 229);
+  color: white;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  border: 1px solid rgb(221, 221, 221);
+  text-align: left;
+}
+
+.admin-table tbody tr:hover {
+  background: rgb(241, 245, 249);
+} 

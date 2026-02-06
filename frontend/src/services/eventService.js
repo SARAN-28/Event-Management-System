@@ -18,3 +18,18 @@ export const registerForEvent = async (eventId) => {
     return res.json();
 };
 
+export const deleteEvent = async (eventId) => {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(
+        `http://localhost:5000/api/events/${eventId}`,
+        {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
+
+    return res.json();
+};
