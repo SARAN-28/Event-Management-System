@@ -5,26 +5,29 @@
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
 }
 
 .add-event-container h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   color: rgb(127, 0, 255);
+  font-size: 22px;
 }
 
 .add-event-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
 }
 
 .add-event-form input,
 .add-event-form textarea {
-  padding: 10px;
+  padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid rgb(204, 204, 204);
+  border: 1px solid #ccc;
   font-size: 14px;
+  outline: none;
 }
 
 .add-event-form textarea {
@@ -32,13 +35,20 @@
   height: 80px;
 }
 
+.add-event-form input:focus,
+.add-event-form textarea:focus {
+  border-color: rgb(127, 0, 255);
+}
+
 .add-event-form button {
+  margin-top: 6px;
   background: linear-gradient(135deg, rgb(127, 0, 255), rgb(225, 0, 255));
   color: white;
   border: none;
   padding: 12px;
-  border-radius: 20px;
-  font-weight: bold;
+  border-radius: 22px;
+  font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
 }
 

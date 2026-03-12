@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import SessionModal from "../components/SessionModal";
 import CheckInOutHistoryModal from "../components/CheckInOutHistoryModal";
+import AddEvent from "./AddEvent";
 import "../styles/admindashboard.css";
 
 const AdminDashboard = () => {
@@ -11,23 +11,18 @@ const AdminDashboard = () => {
     const [selectedUserId, setSelectedUserId] = useState(null);
     const [showSessionModal, setShowSessionModal] = useState(false);
     const [showCheckInOutModal, setShowCheckInOutModal] = useState(false);
-
-    const navigate = useNavigate();
+    const [showAddEventModal, setShowAddEventModal] = useState(false);
 
     const fetchUsers = async () => {
         const token = localStorage.getItem("token");
 
-        try {
-            const res = await api.get("/admin/users", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+        const res = await api.get("/admin/users", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
-            setUsers(res.data.users);
-        } catch (error) {
-            console.error("Error fetching users:", error);
-        }
+        setUsers(res.data.users);
     };
 
     useEffect(() => {
@@ -37,21 +32,17 @@ const AdminDashboard = () => {
     const handleRoleChange = async (userId, newRole) => {
         const token = localStorage.getItem("token");
 
-        try {
-            await api.put(
-                `/admin/users/${userId}/role`,
-                { role: newRole },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
+        await api.put(
+            `/admin/users/${userId}/role`,
+            { role: newRole },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
 
-            fetchUsers();
-        } catch (error) {
-            console.error("Error changing role:", error);
-        }
+        fetchUsers();
     };
 
     const openDeleteDialog = (userId) => {
@@ -82,7 +73,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div style={{ display: "flex", gap: "10px" }}>
-                    <button className="add-event-btn" onClick={() => navigate("/admin/add-event")}>
+                    <button className="add-event-btn" onClick={() => setShowAddEventModal(true)}>
                         + Add Event
                     </button>
 
@@ -116,14 +107,21 @@ const AdminDashboard = () => {
                                 <td>{user.email}</td>
                                 <td>{user.role}</td>
                                 <td>
-                                    <select className="role-select" value={user.role} onChange={(e) =>
-                                        handleRoleChange(user._id, e.target.value)}>
+                                    <select
+                                        className="role-select"
+                                        value={user.role}
+                                        onChange={(e) =>
+                                            handleRoleChange(user._id, e.target.value)
+                                        }
+                                    >
                                         <option value="user">User</option>
                                         <option value="organizer">Organizer</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <button className="delete-btn" onClick={() => openDeleteDialog(user._id)}>
+                                    <button className="delete-btn"
+                                        onClick={() => openDeleteDialog(user._id)}
+                                    >
                                         Delete
                                     </button>
                                 </td>
@@ -140,25 +138,31 @@ const AdminDashboard = () => {
                     <button className="confirm-btn" onClick={confirmDelete}>
                         Yes
                     </button>
-
-                    <button className="cancel-btn" onClick={() => deleteDialogRef.current.close()}>
+                    <button
+                        className="cancel-btn"
+                        onClick={() => deleteDialogRef.current.close()}
+                    >
                         No
                     </button>
                 </div>
             </dialog>
 
-            {
-                showSessionModal && (
-                    <SessionModal close={() => setShowSessionModal(false)} />
-                )
-            }
+            {showSessionModal && (
+                <SessionModal close={() => setShowSessionModal(false)} />
+            )}
 
-            {
-                showCheckInOutModal && (
-                    <CheckInOutHistoryModal close={() => setShowCheckInOutModal(false)} />
-                )
-            }
-        </div >
+            {showCheckInOutModal && (
+                <CheckInOutHistoryModal close={() => setShowCheckInOutModal(false)} />
+            )}
+
+            {showAddEventModal && (
+                <div className="confirm-overlay">
+                    <div className="confirm-box">
+                        <AddEvent />
+                    </div>
+                </div>
+            )}
+        </div>
     );
 };
 
